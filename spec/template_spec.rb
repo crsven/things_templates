@@ -15,9 +15,10 @@ describe Template do
 
   describe '#build' do
     before { ThingsController.stub(:add_item) }
-    before { subject.build! }
 
     context 'with an item list template' do
+      before { subject.build! }
+
       it 'adds a Things item for each item' do
         expect(ThingsController).to have_received(:add_item).with('test_item_1')
         expect(ThingsController).to have_received(:add_item).with('test_item_2')
@@ -27,15 +28,15 @@ describe Template do
     context 'with a project list template' do
       let(:file_path) { 'spec/files/test_template_with_project.yml' }
 
-      before { ThingsController.stub(:add_project) }
+      before { ThingsController.stub(:add_items_to_project) }
+      before { subject.build! }
 
       it 'creates a project' do
-        expect(ThingsController).to have_received(:add_project).with('test_project', ['test_item_1', 'test_item_2'])
+        expect(ThingsController).to have_received(:add_items_to_project).with('test_project', ['test_item_1', 'test_item_2'])
       end
 
       it 'adds a Things item for each item' do
-        expect(ThingsController).to have_received(:add_item).with('test_item_1')
-        expect(ThingsController).to have_received(:add_item).with('test_item_2')
+        expect(ThingsController).to_not have_received(:add_item)
       end
     end
   end

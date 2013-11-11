@@ -5,21 +5,41 @@ class ThingsController
       system(command)
     end
 
-    def add_project(project, items)
-      commands = [
-        base_command,
-        add_project_command(project),
-      ]
+    def add_project(project)
+      unless project_exists?(project)
+        command_list = [base_command, add_project_command(project), end_command]
+        command = command_list.join("\n")
+        system(command)
+      end
+    end
+
+    def add_items_to_project(project, items)
+      add_project(project) unless project_exists?(project)
+      commands = [base_command]
       items.each do |item|
         commands << add_item_command(item, project)
       end
       commands << end_command
       command = commands.join("\n")
-      p command
       system(command)
     end
 
     private
+
+    def project_exists?(project)
+      command = """
+        set foundProject to project \"#{project}\"\n
+        if status of foundProject is completed then\n
+          return false\n
+        else\n
+          return true\n
+        end if\n
+      """
+      command_list = [base_command, command, end_command].join("\n")
+      response = `#{command_list}`
+      return false unless response.include?("true") || response.include?("Can't get project")
+      true
+    end
 
     def add_item_command(item, project=nil)
       base_add = "set newToDo to make new to do with properties {name:\"#{item}\" }"

@@ -10,9 +10,12 @@ class Template
   end
 
   def build!
-    ThingsController.add_project(project, items) if project
-    items.each do |item|
-      ThingsController.add_item(item)
+    if project
+      ThingsController.add_items_to_project(project, items)
+    else
+      items.each do |item|
+        ThingsController.add_item(item)
+      end
     end
   end
 end

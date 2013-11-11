@@ -13,15 +13,61 @@ describe ThingsController do
   end
 
   describe '.add_project' do
+    let(:new_project) { 'new project' }
+
+    subject { ThingsController.add_project new_project }
+
+    before { ThingsController.stub(:system) }
+
+    context 'given the project does not exist' do
+      before { ThingsController.stub(:project_exists?).and_return(false) }
+      before { subject }
+
+      it 'creates the project' do
+        expect(ThingsController).to have_received(:system)
+          .with(/.*#{new_project}.*/)
+      end
+    end
+
+    context 'given the project already exists' do
+      before { ThingsController.stub(:project_exists?).and_return(true) }
+
+      it 'does not create the project' do
+        expect(ThingsController).to_not have_received(:system)
+      end
+    end
+  end
+
+  describe '.add_items_to_project' do
     let(:new_item)    { 'new item' }
     let(:new_project) { 'new project' }
-    before { ThingsController.stub(:system) }
-    before { ThingsController.add_project(new_project, [new_item]) }
 
-    it 'calls the add script with the item and project' do
-      expect(ThingsController).to have_received(:system)
-        .with(/.*name:\"#{new_project}.*#{new_item}.*#{new_project}.*/)
-        #.with(/.*make new ,roject.*#{new_project}.*make new to do.*#{new_item}.*at beginning of project.*#{new_project}.*/)
+    subject { ThingsController.add_items_to_project(new_project, [new_item]) }
+
+    before { ThingsController.stub(:system) }
+
+    context 'given the project exists' do
+      before { ThingsController.stub(:project_exists?).and_return(true) }
+      before { subject }
+
+      it 'calls the add script with the item and project' do
+        expect(ThingsController).to have_received(:system)
+          .with(/.*#{new_item}.*#{new_project}.*/)
+      end
+    end
+
+    context 'given the project does not exist' do
+      before { ThingsController.stub(:project_exists?).and_return(false) }
+
+      it 'creates the project and item' do
+        expect(ThingsController).to receive(:system)
+          .with(/.*#{new_project}.*/).ordered
+
+        expect(ThingsController).to receive(:system)
+          .with(/.*#{new_item}.*#{new_project}.*/).ordered
+
+        subject
+      end
     end
   end
 end
