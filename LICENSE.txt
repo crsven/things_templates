@@ -1,4 +1,4 @@
-Copyright (c) 2013 Bobby Matson and Chris Svenningsen
+Copyright (c) 2013 Chris Svenningsen
 
 MIT License
 
