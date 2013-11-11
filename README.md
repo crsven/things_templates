@@ -6,12 +6,18 @@ Example: a template might include the ingredients needed for a particular
 recipe that you want to add to a grocery list.
 
 ## Installation
-
 `$ gem install things_templates`
 
 ## Usage
-
 `$ build_template <path to template>`
+
+## Template Format
+```
+project: 'Project Name' <optional>
+items:
+  - 'Item 1'
+  - 'Item 2'
+```
 
 ## Contributing
 
