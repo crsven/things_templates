@@ -32,7 +32,8 @@ describe Template do
       before { subject.build! }
 
       it 'creates a project' do
-        expect(ThingsController).to have_received(:add_items_to_project).with('test_project', ['test_item_1', 'test_item_2'])
+        expect(ThingsController).to have_received(:add_items_to_project)
+          .with('test_project', ['test_item_1', 'test_item_2'])
       end
 
       it 'adds a Things item for each item' do

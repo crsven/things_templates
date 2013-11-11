@@ -1,0 +1,5 @@
+--no-doc
+--style-measure 100
+--abc-max 8
+--abc-glob {rakefile,Gemfile,**/*.{rb,rake}}
+--style-glob {rakefile,Gemfile,**/*.{rb,rake}}
