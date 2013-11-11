@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'things_templates'
+
+template = Template.new(ARGV[0])
+template.build!

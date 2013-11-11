@@ -1,0 +1,1 @@
+require 'things_templates'
