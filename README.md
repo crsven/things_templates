@@ -1,4 +1,5 @@
 # Things Templates
+# NOTE: THIS PROBABLY DOESN'T WORK PROPERLY AS A GEM, YET
 
 An easy(?) way to save templates for Things.app. These can include projects or
 items that you often find yourself creating over and over together.
