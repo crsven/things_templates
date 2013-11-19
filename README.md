@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/crsven/things_templates.png)](https://travis-ci.org/crsven/things_templates)
+
 # Things Templates
 
 An easy(?) way to save templates for Things.app. These can include projects or
