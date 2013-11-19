@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ThingsTemplates::Template do
   let(:file_path) { 'spec/files/test_template.yml' }
 
-  subject { ThingsTemplates::Template.new file_path }
+  subject { described_class.new file_path }
 
   describe '.initialize' do
     let(:items) { ['test_item_1', 'test_item_2'] }
