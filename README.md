@@ -14,7 +14,7 @@ recipe that you want to add to a grocery list.
 ## Template Format
 ```
 project: 'Project Name' <optional>
-tags:
+tags: <optional>
   - 'Tag 1'
   - 'Tag 2'
 items:
@@ -22,7 +22,9 @@ items:
   - 'Item 2'
 ```
 Tags will be applied to all items. If a project of the same name already exists,
-the existing project will be used.
+the existing project will be used. If you don't get a cryptic error and instead
+get a cryptic note with a project and/or item IDs, pop on over to Things and
+reap your rewards!
 
 ## Contributing
 
@@ -31,5 +33,6 @@ the existing project will be used.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Write tests (I'm using RSpec in the `spec` folder)
 5. Make sure all tests pass
+5. Make sure [Cane](https://github.com/square/cane) (`bundle exec cane`) passes.
 6. Push to the branch (`git push origin my-new-feature`)
 7. Create new Pull Request
