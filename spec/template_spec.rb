@@ -25,7 +25,7 @@ describe Template do
       end
     end
 
-    context 'with a project list template' do
+    context 'with a project list template with tags' do
       let(:file_path) { 'spec/files/test_template_with_project.yml' }
 
       before { ThingsController.stub(:add_items_to_project) }
@@ -33,7 +33,7 @@ describe Template do
 
       it 'creates a project' do
         expect(ThingsController).to have_received(:add_items_to_project)
-          .with('test_project', ['test_item_1', 'test_item_2'])
+          .with('test_project', ['test_item_1', 'test_item_2'], ['tag_1', 'tag_2'])
       end
 
       it 'adds a Things item for each item' do

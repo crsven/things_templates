@@ -41,8 +41,9 @@ describe ThingsController do
   describe '.add_items_to_project' do
     let(:new_item)    { 'new item' }
     let(:new_project) { 'new project' }
+    let(:tags)        { nil }
 
-    subject { ThingsController.add_items_to_project(new_project, [new_item]) }
+    subject { ThingsController.add_items_to_project(new_project, [new_item], tags) }
 
     before { ThingsController.stub(:system) }
 
@@ -53,6 +54,15 @@ describe ThingsController do
       it 'calls the add script with the item and project' do
         expect(ThingsController).to have_received(:system)
           .with(/.*#{new_item}.*#{new_project}.*/)
+      end
+
+      context 'given tags' do
+        let(:tags) { ['best', 'ever'] }
+
+        it 'calls the add script with the item, project and tags' do
+          expect(ThingsController).to have_received(:system)
+            .with(/.*#{new_item}.*#{new_project}.*#{tags.join(', ')}.*/)
+        end
       end
     end
 

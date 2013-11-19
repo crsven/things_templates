@@ -1,4 +1,7 @@
 project: test_project
+tags:
+  - tag_1
+  - tag_2
 items:
   - test_item_1
   - test_item_2
