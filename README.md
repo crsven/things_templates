@@ -1,5 +1,4 @@
 # Things Templates
-# NOTE: THIS PROBABLY DOESN'T WORK PROPERLY AS A GEM, YET
 
 An easy(?) way to save templates for Things.app. These can include projects or
 items that you often find yourself creating over and over together.
@@ -15,10 +14,15 @@ recipe that you want to add to a grocery list.
 ## Template Format
 ```
 project: 'Project Name' <optional>
+tags:
+  - 'Tag 1'
+  - 'Tag 2'
 items:
   - 'Item 1'
   - 'Item 2'
 ```
+Tags will be applied to all items. If a project of the same name already exists,
+the existing project will be used.
 
 ## Contributing
 
