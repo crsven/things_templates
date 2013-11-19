@@ -1,4 +1,4 @@
-class ThingsTemplates::ThingsController
+class ThingsTemplates::AppController
   class << self
     def add_item(item)
       command = [base_command, add_item_command(item), end_command].join("\n")

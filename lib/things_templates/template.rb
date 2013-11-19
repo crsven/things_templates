@@ -12,10 +12,10 @@ class ThingsTemplates::Template
 
   def build!
     if project
-      ThingsTemplates::ThingsController.add_items_to_project(project, items, tags)
+      ThingsTemplates::AppController.add_items_to_project(project, items, tags)
     else
       items.each do |item|
-        ThingsTemplates::ThingsController.add_item(item)
+        ThingsTemplates::AppController.add_item(item)
       end
     end
   end
