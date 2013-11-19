@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'things_templates'
+begin
+  require 'things_templates'
+rescue
+  require 'rubygems'
+  require 'things_templates'
+end
 
 template = Template.new(ARGV[0])
 template.build!
