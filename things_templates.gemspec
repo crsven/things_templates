@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = ThingsTemplates::VERSION
   spec.authors       = ["Chris Svenningsen"]
   spec.email         = ["crsven@gmail.com"]
-  spec.description   = ""
-  spec.summary       = ""
-  spec.homepage      = ""
+  spec.description   = "Templating for Things.app"
+  spec.summary       = "Easy(?) templating for Things.app. Create and build templates of projects, items and tags."
+  spec.homepage      = "https://github.com/crsven/things_templates"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
