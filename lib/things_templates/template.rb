@@ -1,6 +1,6 @@
 require 'yaml'
 
-class Template
+class ThingsTemplates::Template
   attr_reader :items, :project, :tags
 
   def initialize(file)
@@ -12,10 +12,10 @@ class Template
 
   def build!
     if project
-      ThingsController.add_items_to_project(project, items, tags)
+      ThingsTemplates::ThingsController.add_items_to_project(project, items, tags)
     else
       items.each do |item|
-        ThingsController.add_item(item)
+        ThingsTemplates::ThingsController.add_item(item)
       end
     end
   end
